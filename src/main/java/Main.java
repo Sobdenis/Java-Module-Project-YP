@@ -27,7 +27,7 @@ public class Main {
                   productName = scanner.next();
 
                   сalculatorList.add(productName);
-                  System.out.println("Введите стоимость в формате 00,00 Руб.коп.:");
+                  System.out.println("Введите стоимость в формате 00,00 руб.коп.:");
                   productPriceString = scanner.next();
                   productPriceString = productPriceString.replaceAll(",", ".");
                   while (!isNumeric(productPriceString)) {
@@ -43,7 +43,6 @@ public class Main {
                for (int i = 0; i < сalculatorList.size(); i++) {
                    String name = сalculatorList.get(i);
                    double price = сalculatorDouble.get(i);
-                   int namb = i;
                    String rubName = " рубль";
                    int rub1 = (int) price;
                    switch (rub1 % 10){ case 1:
@@ -53,7 +52,7 @@ public class Main {
                        case 5: case 6: case 7: case 8: case 9: case 0:
                            rubName = " рублей";
                    }
-                   System.out.print(++namb + " " + name + " " + price + " " + rubName + "\n");
+                   System.out.print(i+1 + " " + name + " " + price + " " + rubName + "\n");
                     }
 
                   System.out.print("Общая стоимость: " + result + "\n \n");
@@ -110,10 +109,14 @@ public class Main {
         do {
             System.out.println("На скольких человек необходимо разделить счёт \n(Введите количество человек более 1):");
             while (!scanner.hasNextInt()) {
-                System.out.println("Это некорректное значение для подсчёта \nНа скольких человек необходимо разделить счёт \n(Введите количество человек более 1):");
+                System.out.println("Это некорректное значение для подсчёта \n\n На скольких человек необходимо разделить счёт \n(Введите количество человек более 1):");
                 scanner.next();
             }
             userInput = scanner.nextInt();
+            if (userInput <=1) {
+                System.out.println("Ошибка");
+                start();
+            }
         } while (userInput <= 1);
         System.out.println("Будем делить счёт на " + userInput + " чел.");
         сalculator();
